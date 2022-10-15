@@ -1,0 +1,20 @@
+#if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#exec sway
+#fi
+
+export MOZ_ENABLE_WAYLAND=1
+#export TERM=foot
+
+export AUR_DIR=~/AURs/
+export DOT_DIR=~/Documents/dotfiles/
+export ZSH="/home/lohse/.oh-my-zsh"
+export EDITOR='nvim'
+export SCHOOL=~/Documents/School/
+export PATH=/home/lohse/.cargo/bin:~/.local/bin:$PATH
+
+alias sshServer='ssh -i ~/.ssh/id_rsa root@134.122.85.116'
+export _comp_dumpfile="~/.comp_dump"
+
+#alias MP=curl 'https://qrcode.show/mobilepay://send?phone=51164199&comment=nice&amount=69.69'
+
+. "$HOME/.cargo/env"

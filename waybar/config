@@ -1,0 +1,127 @@
+// vim: filetype=json
+{
+    "layer": "middle",
+    "position": "top",
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "clock#1",
+        "custom/clock_2",
+        "clock#3"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "memory",
+        "cpu",
+        "temperature",
+        "disk",
+        "backlight",
+        "custom/stregdollars",
+        "custom/space",
+        "custom/power_check",
+        "battery"
+    ],
+    "custom/space": {
+        "format": " "
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "custom/clock_2": {
+        "interval": 20,
+        "return-type" : "json",
+        "format": "{}",
+        "exec": "bash ~/helperscripts/clock2.sh"
+    },
+    "clock#1": {
+        "format": "{:%A}",
+        "tooltip": false
+    },
+    "clock#2": {
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+    "clock#3": {
+        "format": "{:%d %b}",
+        "tooltip": false
+    },
+    "clock#4": {
+        "format": "LEET",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{icon}{volume:2}%",
+        "format-bluetooth": "{icon}{volume}%",
+        "format-muted": "MUTE",
+        "format-icons": {
+            "headphones": "",
+            "default": [""]
+        },
+        "scroll-step": 2,
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol"
+    },
+    "backlight": {
+        "format": "{icon}{percent}%",
+        "format-icons": [""]
+    },
+    "memory": {
+        "interval": 5,
+        "format": "{}%"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "{usage:2}%"
+    },
+    "battery": {
+        "interval": 10,
+        "states": {
+            "good": 100,
+            "normal": 94,
+            "nice": 69,
+            "normal2": 68,
+            "stack": 64,
+            "normal3": 63,
+            "warning": 15,
+            "critical": 5
+        },
+        "format": "\u162F{capacity}%",
+        "format-nice": "nice...",
+        "format-stack": "STACK"
+    },
+    "custom/power_check": {
+        "exec": "sh $HOME/helperscripts/bat_send.sh",
+        "exec-if": "sh $HOME/helperscripts/bat_check.sh",
+        "interval": 10
+    },
+    "custom/stregdollars": {
+        "gtk-layer-shell": true,
+        "return-type" : "json",
+        "format": "⛃{} S$",
+        "exec": "bash ~/helperscripts/stregdollars.sh",
+        "exec-on-event": false,
+        "interval": 1200,
+        "tooltip": true,
+        "on-click": "bash ~/helperscripts/stregdollars.sh refill",
+        "on-click-right": "bash ~/helperscripts/stregdollars.sh buy",
+        "on-click-middle": "bash ~/helperscripts/stregdollars.sh buy_latest"
+    },
+    "disk": {
+        "interval": 5,
+        "format": "{percentage_used:2}%",
+        "path": "/",
+        "tooltip-format": "{used} used out of {total}"
+    },
+    "temperature": {
+        "critical-threshold": 70,
+        "format-critical": "🔥🔥🔥{temperatureC}°C🔥🔥🔥",
+        "format": "{temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "{temperatureK}°K || {temperatureF}°F"
+      }
+}
+
