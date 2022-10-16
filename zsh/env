@@ -6,7 +6,7 @@ export MOZ_ENABLE_WAYLAND=1
 #export TERM=foot
 
 export AUR_DIR=~/AURs/
-export DOT_DIR=~/Documents/dotfiles/
+export DOT_DIR=~/dotfiles
 export ZSH="/home/lohse/.oh-my-zsh"
 export EDITOR='nvim'
 export SCHOOL=~/Documents/School/
