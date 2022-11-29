@@ -37,6 +37,7 @@ local opts = {
 },
 
 Remap.nnoremap("K", ":RustHoverActions<CR>", { silent = true })
+Remap.nnoremap("J", ":RustCodeAction<CR>", { silent = true })
 
 require('rust-tools').setup(opts)
 require('rust-tools').inlay_hints.enable()

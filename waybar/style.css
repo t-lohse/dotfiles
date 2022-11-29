@@ -2,13 +2,15 @@
 * {
 	font-size: 16px;
 	font-family: Nerdfont, Roboto, Monospace;
-	font-weight: bold;
+    font-weight: Bold;
+  	border-radius: 0px;
 }
 
 window#waybar {
 	background: rgba(0, 0, 0, 0);
 }
 
+#mode,
 #workspaces,
 #clock,
 #custom-clock_2,
@@ -25,7 +27,13 @@ window#waybar {
 }
 #custom-space {
 	background-color: rgba(0, 0, 0, 0);
+    margin: 0px -16px;
 	color: #d20000;
+}
+#mode {
+	margin: 3px 5px 3px 200px;
+	padding: 1px 5px;
+  	border-radius: 10px;
 }
 #workspaces {
 	margin: 3px 5px 3px 5px;
@@ -42,10 +50,12 @@ window#waybar {
 	color: #1a1a1a;
 	background: #d20000;
 }
+#custom-stregdollars:hover,
+#pulseaudio:hover,
 #workspaces button:hover {
 	color: #d20000;
 	background: #2a2a2a;
-	border: 2px #d20000;
+	border: 0px #000000;
     box-shadow: inherit;
 	text-shadow: inherit;	
 }

@@ -9,8 +9,10 @@ export AUR_DIR=~/AURs/
 export DOT_DIR=~/dotfiles
 export ZSH="/home/lohse/.oh-my-zsh"
 export EDITOR='nvim'
-export SCHOOL=~/Documents/School/
+export SCHOOL=/home/lohse/Documents/School/
 export PATH=/home/lohse/.cargo/bin:~/.local/bin:$PATH
+export LOCK_PICS=/home/lohse/Documents/Pictures/Lockscreen
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
 alias sshServer='ssh -i ~/.ssh/id_rsa root@134.122.85.116'
 export _comp_dumpfile="~/.comp_dump"

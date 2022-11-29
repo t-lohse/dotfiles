@@ -5,7 +5,7 @@ set $dotfiles "/home/lohse/dotfiles"
 ## Variables
 set $mod Mod4
 set $exec bash $helpers/sway_tile.sh
-set $lock bash $helpers/Autopick.sh
+set $lock exec swaylock
 #set $term exec sh /home/lohse/Documents/dotfiles/sway_tile.sh "termite -d `cat ~/.last_dir`"
 set $tile $exec foot 
 set $term $exec "foot -D `cat ~/.last_dir`"
@@ -66,14 +66,7 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 
 ## Output configuration
 output * bg $background fill
-set $laptop eDP-1
-bindswitch --locked lid:on output $laptop disable
-bindswitch --locked lid:off output $laptop enable
 
-set $main_monitor DP-3
-set $sec_monitor DP-4
-output $main_monitor pos 1080 0 
-output $sec_monitor pos 0 0 transform 270
 
 ## Shortcuts
 bindsym $mod+Return exec $tile
@@ -117,7 +110,7 @@ bindsym --locked XF86MonBrightnessDown exec --no-startup-id sudo light -U 10
 bindsym --locked $mod+F10 exec foot -a floater sh $helpers/BT.sh
 bindsym --locked $mod+F8  exec foot -a floater nmtui 
 
-for_window [app_id="floater"] floating enable, border none, resize set width 1500 height 960px
+for_window [app_id="floater"] floating enable, border none, resize set width 60ppt height 60ppt
 
 ## Cycle through workspaces
 bindsym $mod+tab workspace next_on_output 
@@ -239,8 +232,36 @@ mode "resize" {
     # return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym q mode "default"
 }
 bindsym $mod+r mode "resize"
+
+set $laptop eDP-1
+set $hdmi HDMI-A-1
+# output $laptop pos 0 0
+mode "ext. screen" {
+    # Mirror no work
+    bindsym m output $hdmi pos 0 0    ; output $laptop pos 0 0    ; exec notify-send "Moved ext. monitor" "Mirror" ; mode "default"
+    bindsym r output $hdmi pos 1920 0 ; output $laptop pos 0 0    ; exec notify-send "Moved ext. monitor" "Right"  ; mode "default"
+    bindsym l output $hdmi pos 0 0    ; output $laptop pos 1920 0 ; exec notify-send "Moved ext. monitor" "Left"   ; mode "default"
+    bindsym a output $hdmi pos 0 0    ; output $laptop pos 0 1080 ; exec notify-send "Moved ext. monitor" "Above"  ; mode "default"
+    bindsym b output $hdmi pos 0 1080 ; output $laptop pos 0 0    ; exec notify-send "Moved ext. monitor" "Below"  ; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+}
+bindsym $mod+p mode "ext. screen"
+
+bindswitch --locked lid:on output $laptop disable
+bindswitch --locked lid:off output $laptop enable
+
+set $main_monitor DP-3
+set $sec_monitor DP-4
+output $sec_monitor pos 0 0 transform 270
+output $main_monitor pos 1080 0 
+
+bindsym $mod+k input 1:1:AT_Translated_Set_2_keyboard events toggle enabled disabled
 
 bar {
     swaybar_command waybar

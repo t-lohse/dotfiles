@@ -19,3 +19,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 vim.g.mapleader = " "
+
+vim.opt.spr = true
+vim.opt.sb = true
+

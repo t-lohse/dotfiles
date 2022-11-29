@@ -24,7 +24,7 @@ set postponed = "+INBOX.Drafts"
 set mail_check = 6
 set ssl_starttls=yes
 set ssl_force_tls=yes
-mailboxes imaps://mx.tlohse.dk/INBOX
+mailboxes imaps://mail.tlohse.dk/INBOX
 
 # Allow Mutt to open a new IMAP connection automatically.
 unset imap_passive
