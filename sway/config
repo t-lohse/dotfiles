@@ -13,6 +13,8 @@ set $shaell $exec "foot -o shell=/home/lohse/Documents/School/4_Sem/p4-project/s
 #set $menu $exec sirula
 #set $menu $exec dmenu_run -nb '#151515' -sf '#151515' -sb '#d20000' -nf '#bbbbbb'
 set $menu foot -a floater bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
+set $pacinstall foot -a floater bash -c 'pacman -Sl | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 2 | xargs -ro sudo pacman -S'
+set $pacrm foot -a floater bash -c 'pacman -Qn | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 1 | xargs -ro sudo pacman -R'
 set $screenshot grim ~/Documents/Pictures/Screenshots/scrn_$(date +"%d-%m-%Y|%H:%M:%S").png
 set $screenclip exec grim -g "$(slurp)" - | wl-copy && exec notify-send 'Screenclip has been copied to the clipboard' 'Kinda gay tho.....'
 set $background /home/lohse/Documents/Pictures/BATground.jpg
@@ -50,6 +52,7 @@ exec --no-startup-id mako -c /home/lohse/dotfiles/mako/config
 exec --no-startup-id libinput-gestures
 exec_always bash ~/.config/sway/autostart.sh
 exec --no-startup-id discord
+exec --no-startup-id signal-desktop
 
 ## Input configuration
 input * {
@@ -75,6 +78,8 @@ bindsym $mod+Ctrl+Return exec $shaell
 bindsym Alt+Print exec $screenshot
 bindsym Print exec $screenclip
 bindsym $mod+d exec $menu
+bindsym $mod+o exec $pacinstall
+bindsym $mod+Shift+o exec $pacrm
 bindsym --locked $mod+Alt+Return exec poweroff
 bindsym --locked $mod+Alt+Shift+Return exec reboot
 bindsym $mod+l exec $lock
@@ -125,9 +130,9 @@ bindsym $mod+Right focus right
 
 ## move the focused window with the same, but add Shift
 bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 ## switch to workspace
 bindsym $mod+1   workspace 1
@@ -156,9 +161,13 @@ bindsym $mod+Shift+0    move container to workspace 10
 ## open applications
 bindsym $mod+Ctrl+b exec firefox
 bindsym $mod+Ctrl+d exec discord
+bindsym $mod+Ctrl+s exec signal-desktop
 
 ## Default workspaces for common programs
     for_window [instance="discord"] move container to workspace 10;
+    for_window [instance="Signal"] move container to workspace 10;
+    for_window [class="Signal"] move container to workspace 10;
+    for_window [title="Signal"] move container to workspace 10;
     for_window [class="Steam"] to workspace 9;
     for_window [instance="Steam"] to workspace 9;
     for_window [title="Steam"] to workspace 9;
@@ -260,8 +269,6 @@ set $main_monitor DP-3
 set $sec_monitor DP-4
 output $sec_monitor pos 0 0 transform 270
 output $main_monitor pos 1080 0 
-
-bindsym $mod+k input 1:1:AT_Translated_Set_2_keyboard events toggle enabled disabled
 
 bar {
     swaybar_command waybar

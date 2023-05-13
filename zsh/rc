@@ -5,7 +5,7 @@
 #export ZSH="/home/lohse/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time oh-my-zsh is loaded, in which csec,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -16,11 +16,11 @@ ZSH_THEME="robbyrussell"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Uncomment the following line to use csec-sensitive completion.
+# CSEC_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
+# Csec-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -97,12 +97,12 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# Set personal alisecs, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Alisecs can be placed here, though oh-my-zsh
+# users are encouraged to define alisecs within the ZSH_CUSTOM folder.
+# For a full list of active alisecs, run `alias`.
 #
-# Example aliases
+# Example alisecs
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
@@ -118,7 +118,7 @@ alias ls='ls --color=always'
 alias vim='nvim'
 alias vi='nvim'
 alias updA="bash $helpers/AUR_upd.sh"
-alias curpro='cd ~/Documents/School/5_Sem/Reveaal/'
+alias curpro='cd ~/Documents/School/6_Sem/'
 alias clean="sh $helpers/clean.sh"
 alias proj='cd ~/Documents/Projects/'
 alias rustlings='~/.cargo/bin/rustlings'
@@ -131,8 +131,8 @@ function cd {
     pwd > ~/.last_dir
 }
 
-mi () {
-    cd $SCHOOL/5_Sem/courses/MI/
+ac () {
+    cd $SCHOOL/6_Sem/courses/AC/
     if [ -z "$1" ]; then
         return
  
@@ -149,19 +149,19 @@ mi () {
             return
 
         elif; then
-            mkdir -p $SCHOOL/5_Sem/courses/MI/lecture_$1/
+            mkdir -p $SCHOOL/6_Sem/courses/AC/lecture_$1/
             cd lecture_$1/
             echo "Directory created, and changed to"
             return
         fi
 
     else
-        cd $SCHOOL/5_Sem/courses/MI/lecture_$1/
+        cd $SCHOOL/6_Sem/courses/MI/lecture_$1/
     fi
 }
 
-dbs () {
-    cd $SCHOOL/5_Sem/courses/DBS/
+mtcps () {
+    cd $SCHOOL/6_Sem/courses/MTCPS/
     if [ -z "$1" ]; then
         return
  
@@ -178,19 +178,19 @@ dbs () {
             return
 
         elif; then
-            mkdir -p $SCHOOL/5_Sem/courses/DBS/lecture_$1/
+            mkdir -p $SCHOOL/6_Sem/courses/MTCPS/lecture_$1/
             cd lecture_$1/
             echo "Directory created, and changed to"
             return
         fi
 
     else
-        cd $SCHOOL/5_Sem/courses/DBS/lecture_$1/
+        cd $SCHOOL/6_Sem/courses/MTCPS/lecture_$1/
     fi
 }
 
-ase () {
-    cd $SCHOOL/5_Sem/courses/ASE/
+sec () {
+    cd $SCHOOL/6_Sem/courses/SEC/
     if [ -z "$1" ]; then
         return
  
@@ -207,14 +207,14 @@ ase () {
             return
 
         elif; then
-            mkdir -p $SCHOOL/5_Sem/courses/ASE/lecture_$1/
+            mkdir -p $SCHOOL/6_Sem/courses/SEC/lecture_$1/
             cd lecture_$1/
             echo "Directory created, and changed to"
             return
         fi
 
     else
-        cd $SCHOOL/5_Sem/courses/ASE/lecture_$1/
+        cd $SCHOOL/6_Sem/courses/SEC/lecture_$1/
     fi
 }
 
