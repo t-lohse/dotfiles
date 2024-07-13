@@ -1,5 +1,3 @@
-require("tlohse")
-
---vim.cmd(":set rtp+=~/personal/vim-with-me/v69")
-
-
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+-- require("lsp.lazy")
