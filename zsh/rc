@@ -110,7 +110,6 @@ source $ZSH/oh-my-zsh.sh
 #alias calc='~/Documents/Projects/programmer-calculator/pcalc -c'
 # alias ssc='pdflatex -jobname="20204615_Thomas_Krogh_Lohse" main.tex ; rm *.log *.aux'
 
-alias ecdar='cd ~/Documents/Ecdar'
 helpers='/home/lohse/helperscripts'
 
 alias la='natls -gsl'
@@ -118,7 +117,7 @@ alias ls='ls --color=always'
 alias vim='nvim'
 alias vi='nvim'
 alias updA="bash $helpers/AUR_upd.sh"
-alias curpro='cd ~/Documents/School/6_Sem/'
+alias curpro='cd $SCHOOL/$SEMESTER'
 alias clean="sh $helpers/clean.sh"
 alias proj='cd ~/Documents/Projects/'
 alias rustlings='~/.cargo/bin/rustlings'
@@ -131,90 +130,50 @@ function cd {
     pwd > ~/.last_dir
 }
 
-ac () {
-    cd $SCHOOL/6_Sem/courses/AC/
-    if [ -z "$1" ]; then
-        return
- 
-    elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
-        printf "    Wrong argument\n    Format='impr <POSITIVE INTEGER>\n\n"
-        return
+SEMESTER="8_Sem"
+_courses=("sP" "" "DS" "DIS")
 
-    elif [ ! -d "lecture_$1/" ]; then
-        printf "lecture_$1\nThe diretory doesn't exist\nWould you like to create it? [Y/N]\n\n=>  "
-        read cmd
-        echo $cmd
-        if [ "$cmd" = "N" ] || [ "$cmd" = "n" ]; then
-            echo "Directory not created"
-            return
-
-        elif; then
-            mkdir -p $SCHOOL/6_Sem/courses/AC/lecture_$1/
-            cd lecture_$1/
-            echo "Directory created, and changed to"
-            return
-        fi
-
-    else
-        cd $SCHOOL/6_Sem/courses/MI/lecture_$1/
-    fi
+slideshow() {
+    feh -Z -. -s -D 5 $1
 }
 
-mtcps () {
-    cd $SCHOOL/6_Sem/courses/MTCPS/
-    if [ -z "$1" ]; then
-        return
- 
-    elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
-        printf "    Wrong argument\n    Format='impr <POSITIVE INTEGER>\n\n"
-        return
+function generateFuncs {
+    "${1:l}" () {
+        local name="${funcstack:u}"
+        local DIR="$SCHOOL/$SEMESTER/courses/$name"
+        mkdir -p $DIR
+        cd $DIR
 
-    elif [ ! -d "lecture_$1/" ]; then
-        printf "lecture_$1\nThe diretory doesn't exist\nWould you like to create it? [Y/N]\n\n=>  "
-        read cmd
-        echo $cmd
-        if [ "$cmd" = "N" ] || [ "$cmd" = "n" ]; then
-            echo "Directory not created"
+        if [ -z "$1" ]; then
+            return
+     
+        elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
+            printf "    Wrong argument\n    Format='impr <POSITIVE INTEGER>\n\n"
             return
 
-        elif; then
-            mkdir -p $SCHOOL/6_Sem/courses/MTCPS/lecture_$1/
-            cd lecture_$1/
-            echo "Directory created, and changed to"
-            return
+        elif [ ! -d "lecture_$1/" ]; then
+            printf "lecture_$1\nThe diretory doesn't exist\nWould you like to create it? [Y/N]\n\n=>  "
+            read cmd
+            echo $cmd
+            if [ "$cmd" = "N" ] || [ "$cmd" = "n" ]; then
+                echo "Directory not created"
+                return
+
+            elif; then
+                mkdir -p "$DIR/lecture_$1"
+                cd "$DIR/lecture_$1"
+                echo "Directory created, and changed to"
+                return
+            fi
+
+        else
+            cd $DIR/lecture_$1/
         fi
-
-    else
-        cd $SCHOOL/6_Sem/courses/MTCPS/lecture_$1/
-    fi
+    }
 }
 
-sec () {
-    cd $SCHOOL/6_Sem/courses/SEC/
-    if [ -z "$1" ]; then
-        return
- 
-    elif ! [[ "$1" =~ ^[0-9]+$ ]]; then
-        printf "    Wrong argument\n    Format='impr <POSITIVE INTEGER>\n\n"
-        return
 
-    elif [ ! -d "lecture_$1/" ]; then
-        printf "lecture_$1\nThe diretory doesn't exist\nWould you like to create it? [Y/N]\n\n=>  "
-        read cmd
-        echo $cmd
-        if [ "$cmd" = "N" ] || [ "$cmd" = "n" ]; then
-            echo "Directory not created"
-            return
+for ((i = 1; i <= $#_courses; i++)) generateFuncs $_courses[i]
 
-        elif; then
-            mkdir -p $SCHOOL/6_Sem/courses/SEC/lecture_$1/
-            cd lecture_$1/
-            echo "Directory created, and changed to"
-            return
-        fi
-
-    else
-        cd $SCHOOL/6_Sem/courses/SEC/lecture_$1/
-    fi
-}
+[ -f "/home/lohse/.ghcup/env" ] && source "/home/lohse/.ghcup/env" # ghcup-env
 
