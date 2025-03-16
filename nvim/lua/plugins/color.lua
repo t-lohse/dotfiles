@@ -1,4 +1,5 @@
 return {
+    --[[
     {
         "AlexvZyl/nordic.nvim",
         lazy = false,
@@ -7,11 +8,20 @@ return {
             require("nordic").load()
         end,
     },
+    ]]
+    --
+    {
+        "ferdinandrau/lavish.nvim",
+        priority = 1000,
+        config = function()
+            require("lavish").apply()
+        end,
+    },
     -- Configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "nordic",
+            colorscheme = "lavish-dark",
         },
     },
 }
