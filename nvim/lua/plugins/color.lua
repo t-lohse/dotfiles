@@ -8,8 +8,6 @@ return {
             require("nordic").load()
         end,
     },
-    ]]
-    --
     {
         "ferdinandrau/lavish.nvim",
         priority = 1000,
@@ -17,11 +15,13 @@ return {
             require("lavish").apply()
         end,
     },
+    ]] --
+    { "lancewilhelm/horizon-extended.nvim", priority = 1000 },
     -- Configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "lavish-dark",
+            colorscheme = "horizon-extended-neo",
         },
     },
 }

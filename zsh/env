@@ -3,7 +3,7 @@
 #fi
 
 export MOZ_ENABLE_WAYLAND=1
-#export TERM=foot
+export TERM=foot
 
 export AUR_DIR=~/AURs/
 export DOT_DIR=~/dotfiles

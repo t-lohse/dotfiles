@@ -1,7 +1,8 @@
 # Made with inspiration from https://github.com/rbnis/dotfiles/blob/master/.config/sway/config
 
-set $helpers "/home/lohse/helperscripts"
-set $dotfiles "/home/lohse/dotfiles"
+set $helpers "$HOME/helperscripts"
+set $dotfiles "$HOME/dotfiles"
+set $hostname "$(more /etc/hostname)"
 ## Variables
 set $mod Mod4
 set $exec bash $helpers/sway_tile.sh
@@ -10,7 +11,7 @@ set $lock exec swaylock
 set $tile $exec foot 
 set $term $exec "foot -D `cat ~/.last_dir`"
 set $shaell $exec "foot -o shell=/home/lohse/Documents/School/4_Sem/p4-project/shaell-interpreter/ShaellLang/bin/Release/net6.0/ShaellLang"
-set $has $exec "foot ghci" #TODO: Import ProtoLude on load (hide Prelude?)
+set $has $exec "foot ghci" #TODO: Import ProtoLude on load ()
 #set $menu $exec sirula
 #set $menu $exec dmenu_run -nb '#151515' -sf '#151515' -sb '#d20000' -nf '#bbbbbb'
 set $menu foot -a floater bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
@@ -254,39 +255,17 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $laptop eDP-1
-set $hdmi HDMI-A-1
-#output HDMI-A-1 disable
-#output HDMI-A-1 dpms off
-# output $laptop pos 0 0
-mode "ext. screen" {
-    #set $msg "Moved ext. monitor"
-    #set $movework "swaymsg -t get_workspaces | jq -r '.[] | select(.output == \"$hdmi\") | .name' | xargs -I {} swaymsg workspace {} move workspace to output $laptop"
-    #bindsym m output $hdmi scale 1 resolution 1920x1080 transform normal pos 0 0 ; output $laptop scale 1 transform normal pos 0 0 ; [workspace=1..10] move workspace to output $hdmi ; exec notify-send $msg "Mirror" ; mode "default"
-    bindsym r output $hdmi resolution 1920x1080 pos 1920 0  ; output $laptop resolution 1920x1080 pos 0 0 ; exec notify-send $msg "Right"  ; mode "default"
-    bindsym l output $hdmi resolution 1920x1080 pos -1920 0 ; output $laptop resolution 1920x1080 pos 0 0 ; exec notify-send $msg "Left"   ; mode "default"
-    bindsym a output $hdmi resolution 1920x1080 pos 0 -1080 ; output $laptop resolution 1920x1080 pos 0 0 ; exec notify-send $msg "Above"  ; mode "default"
-    bindsym b output $hdmi resolution 1920x1080 pos 0 1080  ; output $laptop resolution 1920x1080 pos 0 0 ; exec notify-send $msg "Below"  ; mode "default"
 
-    bindsym m output $laptop resolution 1920x1080 pos 0 0   ; output $hdmi resolution 1920x1080 pos -0 -0 ; focus output $laptop ; exec notify-send $msg "Mirror" ; mode "default"
+include $HOME/.config/sway/$hostname/screen.conf
+#include $HOME/.config/sway/$hostname/bar
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym q mode "default"
-}
-bindsym $mod+p mode "ext. screen"
-
-bindswitch --locked lid:on output $laptop disable
-bindswitch --locked lid:off output $laptop enable
-
-set $main_monitor DP-3
-set $sec_monitor DP-4
-output $sec_monitor pos 0 0 transform 270
-output $main_monitor pos 1080 0 
-
+# ln -s ~/.config/sway/bar_start.sh ~/.local/bin/waybar_start
+set $bar_cmd waybar_start 
 
 bar {
-    swaybar_command waybar
+    #swaybar_command "~/.config/sway/bar_start.sh"
+    swaybar_command $bar_cmd
+    #swaybar_command "waybar -c /home/lohse/.config/waybar/lohse-desk.conf"
     strip_workspace_numbers yes
     pango_markup enabled
 }
