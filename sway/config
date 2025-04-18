@@ -18,7 +18,7 @@ set $menu foot -a floater bash -c 'compgen -c | grep -v fzf | sort -u | fzf --la
 set $pacinstall foot -a floater zsh -c 'pacman -Sl | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 2 | xargs -ro sudo pacman -S'
 set $pacrm foot -a floater zsh -c 'pacman -Qn | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 1 | xargs -ro sudo pacman -R'
 set $screenshot grim ~/Documents/Pictures/Screenshots/scrn_$(date +"%d-%m-%Y|%H:%M:%S").png
-set $screenclip exec grim -g "$(slurp)" - | wl-copy && exec notify-send 'Screenclip has been copied to the clipboard' 'Kinda gay tho.....'
+set $screenclip exec grim -g "$(slurp)" - | wl-copy --type image/png && exec notify-send 'Screenclip has been copied to the clipboard'
 set $background /home/lohse/Documents/Pictures/BATground.jpg
 #set $background /home/lohse/Documents/Pictures/Lockscreen/Lohse_v2.png
 #set $background /home/lohse/Documents/Pictures/bg.jpg
@@ -257,15 +257,10 @@ bindsym $mod+r mode "resize"
 
 
 include $HOME/.config/sway/$hostname/screen.conf
-#include $HOME/.config/sway/$hostname/bar
-
-# ln -s ~/.config/sway/bar_start.sh ~/.local/bin/waybar_start
-set $bar_cmd waybar_start 
 
 bar {
-    #swaybar_command "~/.config/sway/bar_start.sh"
-    swaybar_command $bar_cmd
-    #swaybar_command "waybar -c /home/lohse/.config/waybar/lohse-desk.conf"
+# ln -s ~/.config/sway/bar_start.sh ~/.local/bin/waybar_start
+    swaybar_command waybar_start
     strip_workspace_numbers yes
     pango_markup enabled
 }
