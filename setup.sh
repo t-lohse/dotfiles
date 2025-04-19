@@ -1,0 +1,51 @@
+#!/bin/bash
+link() {
+    source=$1      # e.g. $DOTFILES/zsh/rc
+    target_file=$2 # e.g. ~/.zshrc
+
+    # Avoid linking to self
+    if [ "$source" = "$target_file" ]; then
+        echo "Skipping self-link: $linkpath"
+        return
+    fi
+
+    # If the link already exists and is correct, skip it
+    if [ -L "$target_file" ] && [ "$(readlink $target_file)" = "$source" ]; then
+        echo "Link to $source already exists and is correct"
+        return
+    fi
+
+    # If file or link exists but is wrong, remove it
+    if [ -e "$target_file" ] || [ -L "$source" ]; then
+        rm -rf "$target_file"
+    fi
+
+    ln -s "$source" "$target_file"
+    echo "Linked: $target_file -> $source"
+}
+
+DOTFILES=$(dirname "$(realpath "$0")")
+echo "dotfiles: $DOTFILES"
+mkdir -p $HOME/.config
+#cd $HOME/.config || exit 1
+
+# Default configs
+link $DOTFILES/sway $HOME/.config/sway
+link $DOTFILES/waybar $HOME/.config/waybar
+link $DOTFILES/swaylock $HOME/.config/swaylock
+link $DOTFILES/mako $HOME/.config/mako
+link $DOTFILES/foot $HOME/.config/foot
+link $DOTFILES/nvim $HOME/.config/nvim
+link $DOTFILES/neomutt $HOME/.config/neomutt
+
+# zsh
+#cd $HOME || exit 1
+link $DOTFILES/zsh/rc $HOME/.zshrc
+link $DOTFILES/zsh/env $HOME/.zshenv
+
+# binary
+mkdir $HOME/.local/bin 2>/dev/null
+#cd $HOME/.local/bin || exit 1
+
+link $DOTFILES/sway/bar_start.sh $HOME/.local/bin/waybar_start
+chmod +x $HOME/.local/bin/waybar_start
