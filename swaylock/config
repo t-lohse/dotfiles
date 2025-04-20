@@ -1,0 +1,9 @@
+ignore-empty-password
+show-failed-attempts
+show-keyboard-layout
+
+color=000000
+scaling=stretch
+image="$(find /home/lohse/Documents/Pictures/Lockscreen -type f | shuf -n 1)"
+
+
