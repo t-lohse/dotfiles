@@ -177,7 +177,6 @@ webpYeet() {
     done
 }
 
-[ -f "/home/lohse/.ghcup/env" ] && source "/home/lohse/.ghcup/env" # ghcup-env
 
 
 
@@ -188,3 +187,5 @@ webpYeet() {
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/lohse/.opam/opam-init/init.zsh' ]] || source '/home/lohse/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+[ -f "/home/lohse/.ghcup/env" ] && . "/home/lohse/.ghcup/env" # ghcup-env

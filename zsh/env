@@ -3,7 +3,7 @@
 #fi
 
 export MOZ_ENABLE_WAYLAND=1
-#export TERM=foot
+export TERM=foot
 
 export AUR_DIR=~/AURs/
 export DOT_DIR=~/dotfiles
@@ -22,6 +22,8 @@ alias intellij="intellij-idea-ultimate-edition"
 
 alias llvmBuildOld="cmake ../llvm -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLLVM_TARGETS_TO_BUILD=\"X86\" -DLLVM_ENABLE_PROJECTS=\"clang;clang-tools-extra\" -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_C_COMPILER=/usr/bin/clang -DLLVM_USE_LINKER=lld"
 alias llvmBuild="cmake -DLLVM_USE_LINKER=lld -DLLVM_OPTIMIZED_TABLEGEN=ON -DBUILD_SHARED_LIBS=ON -DLLVM_CCACHE_BUILD=ON -DLLVM_TARGETS_TO_BUILD=\"X86\" -DLLVM_ENABLE_PROJECTS=\"clang;clang-tools-extra\" -DCMAKE_BUILD_TYPE=Debug -G Ninja ../llvm"
+
+alias sway_start="sway --unsupported-gpu"
 
 #alias MP=curl 'https://qrcode.show/mobilepay://send?phone=51164199&comment=nice&amount=69.69'
 
