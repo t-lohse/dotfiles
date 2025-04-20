@@ -1,0 +1,38 @@
+# vim: filetype=muttrc
+unmailboxes *
+
+#set folder = "imap://mail.tlohse.dk"
+#set folder = "imap://cp04.nordicway.dk:993"
+set folder = "imaps://mail.tlohse.dk"
+# in/out mail servers
+set realname = "Thomas Lohse"
+set imap_user = "mail@tlohse.dk"
+set my_pass = "`pass neomutt/tlohse`"
+set imap_pass = $my_pass
+set spoolfile = "+Inbox"
+#set smtp_url = "smtp://mail@mail.tlohse.dk"
+#set smtp_url = "smtps://mail@tlohse.dk@cp04.nordicway.dk:465"
+set smtp_url = "smtps://mail@tlohse.dk@mail.tlohse.dk"
+set smtp_pass = $my_pass
+set imap_check_subscribed
+
+set from = "mail@tlohse.dk"
+set envelope_from
+set use_from = "yes"
+set record = "+INBOX.Sent"
+set trash = "+INBOX.Trash"
+set postponed = "+INBOX.Drafts"
+set mail_check = 6
+set ssl_starttls=yes
+set ssl_force_tls=yes
+mailboxes imaps://mail.tlohse.dk/INBOX
+
+# Allow Mutt to open a new IMAP connection automatically.
+unset imap_passive
+
+# Keep the IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_pass=$imap_pass"
+

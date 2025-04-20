@@ -1,0 +1,69 @@
+set $hostname "$(more /etc/hostname)"
+set $conf_path "$HOME/.config"
+set $profile_path "$conf_path/sway/$hostname"
+## Variables
+set $mod Mod4
+set $exec sway_tile
+set $lock exec swaylock
+set $tile $exec foot 
+set $term $exec "foot -D `cat ~/.last_dir`"
+set $shaell $exec "foot -o shell=/home/lohse/Documents/School/4_Sem/p4-project/shaell-interpreter/ShaellLang/bin/Release/net6.0/ShaellLang"
+set $haskell_shell $exec "foot ghci"
+set $menu foot -a floater bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
+set $pacinstall foot -a floater zsh -c 'pacman -Sl | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 2 | xargs -ro sudo pacman -S'
+set $pacrm foot -a floater zsh -c 'pacman -Qn | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 1 | xargs -ro sudo pacman -R'
+set $screenshot grim ~/Documents/Pictures/Screenshots/scrn_$(date +"%d-%m-%Y|%H:%M:%S").png
+set $screenclip exec grim -g "$(slurp)" - | wl-copy --type image/png && exec notify-send 'Screenclip has been copied to the clipboard'
+
+#set $jetcmd "/home/lohse/Documents/Projects/DirFind/dist-newstyle/build/x86_64-linux/ghc-9.2.8/DirFind-0.1.0.0/x/DirFind/build/DirFind/DirFind | grep -v fzf | sort -u | fzf --layout=reverse | tr -d '\->' && sleep 100000"
+set $jetsep "@"
+# TODO: Error handle on missing program (notify-send)
+set $jetcmd "/home/lohse/Documents/Projects/DirFind/dist-newstyle/build/x86_64-linux/ghc-9.2.8/DirFind-0.1.0.0/x/DirFind/build/DirFind/DirFind | grep -v fzf | sort -u | fzf --layout=reverse | tr -d @ | xargs -r swaymsg -t command exec"
+set $jetmenu foot -a floater bash -c $jetcmd
+bindsym $mod+j exec $jetmenu
+
+
+include "$conf_path/sway/config.d/looks.conf"
+
+## Autostart
+include "$conf_path/sway/config.d/autostart.conf"
+include "$profile_path/autostart.conf"
+
+## Input configuration
+include "$profile_path/input.conf"
+
+# TODO: Profile-shortcuts??
+
+## Notifications
+bindsym Control+Space exec makoctl dismiss
+bindsym Control+Shift+Space exec makoctl dismiss --all
+
+include "$profile_path/fn_binds.conf"
+
+for_window [app_id="floater"] floating enable, border none, resize set width 60ppt height 60ppt
+
+
+include "$profile_path/app_binds.conf"
+
+
+include "$profile_path/default_workspaces.conf"
+
+
+
+include "$conf_path/sway/config.d/binds.conf"
+#TODO profile binds?
+
+include "$conf_path/sway/config.d/resize.conf"
+
+include "$profile_path/screen.conf"
+
+bar {
+# ln -s ~/.config/sway/bar_start.sh ~/.local/bin/waybar_start
+    swaybar_command waybar_start
+    strip_workspace_numbers yes
+    pango_markup enabled
+}
+
+include /etc/sway/config.d/*
+xwayland enable
+

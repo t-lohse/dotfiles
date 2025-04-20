@@ -1,0 +1,41 @@
+# vim: filetype=muttrc
+
+unmailboxes *
+
+set folder = "imap://mail.aau.dk:993/"
+# in/out mail servers
+set realname = "Thomas Krogh Lohse"
+set my_pass = "`pass neomutt/tlohse20`"
+set imap_user = "tlohse20@student.aau.dk"
+set imap_pass = $my_pass
+set spoolfile = "+DRAFTS"
+set spoolfile = "+TRASH"
+set spoolfile = "+ARCHIVE"
+set spoolfile = "+SENT ITEMS"
+set spoolfile = "+INBOX"
+set smtp_url = "smtp://tlohse20@student.aau.dk@smtp.aau.dk:587/"
+set smtp_pass = $my_pass
+set ssl_starttls=yes
+set ssl_force_tls=yes
+set imap_check_subscribed
+set smtp_authenticators="login"
+
+set from = "tlohse20@student.aau.dk"
+set envelope_from
+set use_from = "yes"
+set record = "+SENT ITEMS"
+set trash = "+TRASH"
+set postponed = "+DRAFTS"
+set mail_check = 6
+#mailboxes
+mailboxes imaps://mail.aau.dk:993/INBOX imaps://mail.aau.dk:993/DRAFTS imaps://mail.aau.dk:993/TRASH imaps://mail.aau.dk:993/ARCHIVE imaps://mail.aau.dk:993/SENT\ ITEMS
+
+unset imap_passive
+
+# Keep the IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_pass=$imap_pass"
+
+

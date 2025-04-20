@@ -1,0 +1,22 @@
+#My custom config of mako
+
+
+#Maximum number of notification shown
+max-visible=5
+layer=overlay
+anchor=bottom-right
+sort=+time
+markup=1
+actions=1
+
+#Style
+font=Cantarell
+text-color=#d20000
+background-color=#1a1a1adf
+border-size=2
+border-color=#0a0a0a
+margin=5
+icons=1
+max-icon-size=64
+default-timeout=10000
+

@@ -1,0 +1,16 @@
+# vim: filetype=neomuttrc
+
+
+## Sidebar
+bind index,pager \Co sidebar-open
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Cp sidebar-prev-new
+bind index,pager \Cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+
+## Accounts
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/tlohse<enter><change-folder>!<enter>'
+#macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/school<enter><change-folder>!<enter>'
+#macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/private<enter><change-folder>!<enter>'
+
