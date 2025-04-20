@@ -7,7 +7,7 @@ set folder = "imaps://mail.tlohse.dk"
 # in/out mail servers
 set realname = "Thomas Lohse"
 set imap_user = "mail@tlohse.dk"
-set imap_pass = "w7WiHbpNkeXEq4z"
+set imap_pass = "`pass neomutt/tlohse`"
 set spoolfile = "+Inbox"
 #set smtp_url = "smtp://mail@mail.tlohse.dk"
 #set smtp_url = "smtps://mail@tlohse.dk@cp04.nordicway.dk:465"

@@ -25,6 +25,7 @@ link() {
 }
 
 DOTFILES=$(dirname "$(realpath "$0")")
+HOSTNAME=$(more "/etc/hostname")
 echo "dotfiles: $DOTFILES"
 mkdir -p $HOME/.config
 #cd $HOME/.config || exit 1
@@ -34,7 +35,10 @@ link $DOTFILES/sway $HOME/.config/sway
 link $DOTFILES/waybar $HOME/.config/waybar
 link $DOTFILES/swaylock $HOME/.config/swaylock
 link $DOTFILES/mako $HOME/.config/mako
-link $DOTFILES/foot $HOME/.config/foot
+mkdir -p $HOME/.config/foot
+#echo "$DOTFILES/foot/$HOSTNAME.ini $HOME/.config/foot/foot.ini"
+link $DOTFILES/foot/$HOSTNAME.ini $HOME/.config/foot/foot.ini
+#link $DOTFILES/foot $HOME/.config/foot
 link $DOTFILES/nvim $HOME/.config/nvim
 link $DOTFILES/neomutt $HOME/.config/neomutt
 
