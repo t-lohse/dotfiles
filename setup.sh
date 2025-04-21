@@ -11,7 +11,7 @@ link() {
 
     # If the link already exists and is correct, skip it
     if [ -L "$target_file" ] && [ "$(readlink $target_file)" = "$source" ]; then
-        echo "Link to $source already exists and is correct"
+        echo "Link to $target_file already exists and is correct"
         return
     fi
 
@@ -28,6 +28,7 @@ DOTFILES=$(dirname "$(realpath "$0")")
 HOSTNAME=$(more "/etc/hostname")
 echo "dotfiles: $DOTFILES"
 mkdir -p $HOME/.config
+
 #cd $HOME/.config || exit 1
 
 # Default configs
@@ -51,5 +52,15 @@ link $DOTFILES/zsh/env $HOME/.zshenv
 mkdir $HOME/.local/bin 2>/dev/null
 #cd $HOME/.local/bin || exit 1
 
-link $DOTFILES/sway/bar_start.sh $HOME/.local/bin/waybar_start
-chmod +x $HOME/.local/bin/waybar_start
+while read p; do
+    file_and_name=($p)
+    if [ "${#file_and_name[@]}" != "2" ]; then
+        echo "Wrong formatted config file. Every line must be formatted as {SCRIPT} {NAME}"
+        exit 1
+    fi
+    file="${file_and_name[0]}"
+    name="${file_and_name[1]}"
+    link $DOTFILES/helperscripts/$file $HOME/.local/bin/$name
+    chmod +x $HOME/.local/bin/$name
+
+done <$DOTFILES/helperscripts/$HOSTNAME.use

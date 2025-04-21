@@ -3,7 +3,7 @@ set $conf_path "$HOME/.config"
 set $profile_path "$conf_path/sway/$hostname"
 ## Variables
 set $mod Mod4
-set $exec bash $conf_path/sway/sway_tile.sh
+set $exec sway_tile
 set $lock exec swaylock
 set $tile $exec foot 
 set $term $exec "foot -D `cat ~/.last_dir`"
@@ -25,9 +25,9 @@ bindsym $mod+j exec $jetmenu
 
 include "$conf_path/sway/config.d/looks.conf"
 
-include "$conf_path/sway/config.d/autostart.conf"
 ## Autostart
-# TODO: other autostart (profile specific)
+include "$conf_path/sway/config.d/autostart.conf"
+include "$profile_path/autostart.conf"
 
 ## Input configuration
 include "$profile_path/input.conf"

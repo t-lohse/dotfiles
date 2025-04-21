@@ -110,15 +110,15 @@ source $ZSH/oh-my-zsh.sh
 #alias calc='~/Documents/Projects/programmer-calculator/pcalc -c'
 # alias ssc='pdflatex -jobname="20204615_Thomas_Krogh_Lohse" main.tex ; rm *.log *.aux'
 
-helpers='/home/lohse/helperscripts'
+#helpers='/home/lohse/helperscripts'
 
 alias la='natls -gsl'
 alias ls='ls --color=always'
 alias vim='nvim'
 alias vi='nvim'
-alias updA="bash $helpers/AUR_upd.sh"
+#alias updA="bash $helpers/AUR_upd.sh"
 alias curpro='cd $SCHOOL/$SEMESTER'
-alias clean="sh $helpers/clean.sh"
+#alias clean="sh $helpers/clean.sh"
 alias proj='cd ~/Documents/Projects/'
 alias rustlings='~/.cargo/bin/rustlings'
 alias tuxkart='~/SuperTuxKart-1.2-linux/run_game.sh'
