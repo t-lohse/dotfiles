@@ -3,7 +3,7 @@ set $conf_path "$HOME/.config"
 set $profile_path "$conf_path/sway/$hostname"
 ## Variables
 set $mod Mod4
-set $exec sway_tile
+set $tile exec sway_tile
 set $lock exec swaylock
 set $tile $exec foot 
 set $term $exec "foot -D `cat ~/.last_dir`"

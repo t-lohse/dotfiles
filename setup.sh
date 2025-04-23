@@ -52,6 +52,9 @@ link $DOTFILES/zsh/env $HOME/.zshenv
 mkdir $HOME/.local/bin 2>/dev/null
 #cd $HOME/.local/bin || exit 1
 
+link $DOTFILES/sway/bar_start.sh $HOME/.local/bin/waybar_start
+link $DOTFILES/sway/sway_tile.sh $HOME/.local/bin/sway_tile
+
 while read p; do
     file_and_name=($p)
     if [ "${#file_and_name[@]}" != "2" ]; then
