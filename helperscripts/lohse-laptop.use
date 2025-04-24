@@ -3,6 +3,6 @@ clock2.sh clock2
 sway_tile.sh sway_tile
 bar_start.sh waybar_start
 BT.sh bt_stuff
-stregdollors.sh stregdollar_check
+stregdollars.sh stregdollar_check
 bat_send.sh bat_send
 bat_check.sh bat_check
