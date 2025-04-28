@@ -189,3 +189,4 @@ webpYeet() {
 # END opam configuration
 
 [ -f "/home/lohse/.ghcup/env" ] && . "/home/lohse/.ghcup/env" # ghcup-env
+export PATH="$HOME/.ghcup/bin:$PATH"
