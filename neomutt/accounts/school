@@ -36,6 +36,6 @@ unset imap_passive
 set imap_keepalive = 300
 
 ## Hook -- IMPORTANT!
-account-hook $folder "set imap_pass=ZeNMADeS7LrE6XH"
+account-hook $folder "set imap_pass=$imap_pass"
 
 
