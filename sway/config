@@ -41,6 +41,7 @@ bindsym Control+Shift+Space exec makoctl dismiss --all
 include "$profile_path/fn_binds.conf"
 
 for_window [app_id="floater"] floating enable, border none, resize set width 60ppt height 60ppt
+for_window [app_id="brainrot"] floating enable, border none, resize set width 30ppt height 30ppt, move position 70ppt 0ppt
 
 
 include "$profile_path/app_binds.conf"
