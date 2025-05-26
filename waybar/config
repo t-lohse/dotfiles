@@ -2,7 +2,6 @@
 {
     "layer": "middle",
     "position": "top",
-
     "modules-left": [
         "sway/workspaces",
         "sway/mode"
@@ -33,7 +32,7 @@
     },
     "custom/clock_2": {
         "interval": 20,
-        "return-type" : "json",
+        "return-type": "json",
         "format": "{}",
         "exec": "bash ~/helperscripts/clock2.sh"
     },
@@ -53,14 +52,15 @@
         "format": "LEET",
         "tooltip": false
     },
-
     "pulseaudio": {
         "format": "{icon}{volume:2}%",
         "format-bluetooth": "{icon}{volume}%",
         "format-muted": "MUTE",
         "format-icons": {
             "headphones": " ",
-            "default": [" "]
+            "default": [
+                " "
+            ]
         },
         "scroll-step": 2,
         "on-click": "pamixer -t",
@@ -69,7 +69,9 @@
     },
     "backlight": {
         "format": "{icon}{percent}%",
-        "format-icons": [""]
+        "format-icons": [
+            ""
+        ]
     },
     "memory": {
         "interval": 5,
@@ -113,7 +115,7 @@
     },
     "custom/stregdollars": {
         "gtk-layer-shell": true,
-        "return-type" : "json",
+        "return-type": "json",
         "format": "⛃{} S$",
         "exec": "bash ~/helperscripts/stregdollars.sh",
         "exec-on-event": false,
@@ -136,5 +138,5 @@
         "format": "{temperatureC}°C",
         "tooltip": true,
         "tooltip-format": "{temperatureK}°K || {temperatureF}°F"
-      }
+    }
 }
