@@ -13,11 +13,10 @@ set $menu foot -a floater bash -c 'compgen -c | grep -v fzf | sort -u | fzf --la
 set $pacinstall foot -a floater zsh -c 'pacman -Sl | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 2 | xargs -ro sudo pacman -S'
 set $pacrm foot -a floater zsh -c 'pacman -Qn | grep -v fzf | sort -u | fzf --layout=reverse | cut -d " " -f 1 | xargs -ro sudo pacman -R'
 set $screenshot grim ~/Documents/Pictures/Screenshots/scrn_$(date +"%d-%m-%Y|%H:%M:%S").png
-set $screenclip exec grim -g "$(slurp)" - | wl-copy --type image/png && exec notify-send 'Screenclip has been copied to the clipboard'
+set $screenclip prt="$(slurp)" && grim -g "$prt" - | wl-copy --type image/png && notify-send 'Screenclip has been copied to the clipboard'
 
 #set $jetcmd "/home/lohse/Documents/Projects/DirFind/dist-newstyle/build/x86_64-linux/ghc-9.2.8/DirFind-0.1.0.0/x/DirFind/build/DirFind/DirFind | grep -v fzf | sort -u | fzf --layout=reverse | tr -d '\->' && sleep 100000"
 set $jetsep "@"
-# TODO: Error handle on missing program (notify-send)
 set $jetcmd "/home/lohse/Documents/Projects/DirFind/dist-newstyle/build/x86_64-linux/ghc-9.2.8/DirFind-0.1.0.0/x/DirFind/build/DirFind/DirFind | grep -v fzf | sort -u | fzf --layout=reverse | tr -d @ | xargs -r swaymsg -t command exec"
 set $jetmenu foot -a floater bash -c $jetcmd
 bindsym $mod+j exec $jetmenu
@@ -56,6 +55,7 @@ include "$conf_path/sway/config.d/binds.conf"
 #TODO profile binds?
 
 include "$conf_path/sway/config.d/resize.conf"
+include "$conf_path/sway/config.d/move.conf"
 
 include "$profile_path/screen.conf"
 
@@ -69,3 +69,4 @@ bar {
 include /etc/sway/config.d/*
 xwayland enable
 
+#default_orientation vertical

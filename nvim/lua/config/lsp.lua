@@ -13,17 +13,6 @@ return {
 
     {
         "neovim/nvim-lspconfig",
-        opts = {
-            setup = {
-                hls = function()
-                    return true
-                end,
-            },
-        },
-    },
-
-    {
-        "neovim/nvim-lspconfig",
         ---@class PluginLspOpts
         opts = {
             ---@type lspconfig.options
@@ -57,5 +46,14 @@ return {
                 },
             },
         },
+    },
+
+    {
+        "salkin-mada/openscad.nvim",
+        config = function()
+            vim.g.openscad_load_snippets = true
+            require("openscad")
+        end,
+        dependencies = { "L3MON4D3/LuaSnip", "junegunn/fzf.vim" },
     },
 }

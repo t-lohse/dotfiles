@@ -3,7 +3,7 @@
 
 #Maximum number of notification shown
 max-visible=5
-layer=overlay
+layer=top
 anchor=bottom-right
 sort=+time
 markup=1

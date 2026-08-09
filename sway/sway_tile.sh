@@ -18,11 +18,11 @@ for arg in "$@"; do
     fi
 done
 
-if [ $(( height > width )) = 1 ]; then  #Splits
-    swaymsg splitv #Vertivally if the focused windows height is greater than the width
+if [ $((height > width)) = 1 ]; then #Splits
+    swaymsg splitv                   #Vertivally if the focused windows height is greater than the width
 else
-    swaymsg splith  #And vice versa
+    swaymsg splith #And vice versa
 fi
 
-$1  ## Takes first argument as the program to be executed
+$1 ## Takes first argument as the program to be executed
 exit

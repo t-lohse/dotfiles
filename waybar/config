@@ -34,7 +34,7 @@
         "interval": 20,
         "return-type": "json",
         "format": "{}",
-        "exec": "bash ~/helperscripts/clock2.sh"
+        "exec": "bash ~/dotfiles/helperscripts/clock2.sh"
     },
     "clock#1": {
         "format": "{:%A}",
